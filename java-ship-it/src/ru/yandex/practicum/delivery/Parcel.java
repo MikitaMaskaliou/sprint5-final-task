@@ -11,18 +11,22 @@ public abstract class Parcel {
     protected String packMessage = "Посылка " + description + " упакована";
     protected String deliverMessage = "Посылка " + description + " доставлена по адресу " + deliveryAddress;
 
-    protected Parcel(String description, int weight, String deliveryAddress, int sendDay) {
+    public Parcel(String description, int weight, String deliveryAddress, int sendDay) {
         this.description = description;
         this.weight = weight;
         this.deliveryAddress = deliveryAddress;
         this.sendDay = sendDay;
     }
 
-    protected abstract void packageItem();
+    protected void packageItem(){ System.out.println(packMessage);};
+
     protected void deliver(){
         System.out.println(deliverMessage);
     }
-    protected abstract int calculateDeliveryCost();
+
+    public int calculateDeliveryCost() { return getBaseCost()*weight;};
+
+    public abstract int getBaseCost();
 
     @Override
     public String toString() {
